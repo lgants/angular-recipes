@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
@@ -9,8 +9,9 @@ import { RecipeService } from '../recipe.service';
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit {
-  // custom events don't propogate up
-  @Output() recipeWasSelected = new EventEmitter<Recipe>();
+  // NOTE custom events don't propogate up
+  // NOTE relocated behavior to recipe service
+  // @Output() recipeWasSelected = new EventEmitter<Recipe>();
   // NOTE square brackets after recipes tells TS that recipes will be an array of instances of class Recipe
   // NOTE relocated to service
   // recipes: Recipe[] = [
@@ -26,7 +27,8 @@ export class RecipeListComponent implements OnInit {
     this.recipes = this.recipeService.getRecipes();
   }
 
-  onRecipeSelected(recipe: Recipe) {
-    this.recipeWasSelected.emit(recipe);
-  }
+  // NOTE relocated behavior to recipe service
+  // onRecipeSelected(recipe: Recipe) {
+  //   this.recipeWasSelected.emit(recipe);
+  // }
 }

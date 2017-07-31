@@ -1,22 +1,27 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { Recipe } from '../../recipe.model';
+import { RecipeService } from '../../recipe.service';
+
 
 @Component({
   selector: 'app-recipe-item',
   templateUrl: './recipe-item.component.html',
-  styleUrls: ['./recipe-item.component.css']
+  styleUrls: ['./recipe-item.component.css'],
+  providers: [RecipeService]
 })
 export class RecipeItemComponent implements OnInit {
-  // @Input enables binding this component property from outside
-  // property is bound in recipe-list.component.html (i.e. [recipe]="recipeElement")
+  // NOTE @Input enables binding this component property from outside
+  // NOTE property is bound in recipe-list.component.html (i.e. [recipe]="recipeElement")
   @Input() recipe: Recipe;
-  // void denotes nothing is passed with event
-  @Output() recipeSelected = new EventEmitter<void>();
+  // NOTE void denotes nothing is passed with event
+  // @Output() recipeSelected = new EventEmitter<void>();
 
-  constructor() { }
+  constructor(private recipeService: RecipeService) { }
 
   onSelected() {
-    this.recipeSelected.emit();
+    // NOTE moved behavior to recipe service
+    // this.recipeSelected.emit();
+    this.recipeService.recipeSelected.emit(this.recipe);
   }
 
   ngOnInit() {
