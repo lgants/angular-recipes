@@ -1,7 +1,9 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shared/ingredient.model';
+import { ShoppingListService } from '../shopping-list/shopping-list.service';
 
+// NOTE @Injectable required to inject a service into another service
 @Injectable()
 export class RecipeService {
   recipeSelected = new EventEmitter<Recipe>();
@@ -27,14 +29,14 @@ export class RecipeService {
     )
   ];
 
-  // constructor(private slService: ShoppingListService) {}
+  constructor(private slService: ShoppingListService) {}
 
   getRecipes() {
     // slice without an argument will return a new recipe array rather than the same array
     return this.recipes.slice();
   }
 
-  // addIngredientsToShoppingList(ingredients: Ingredient[]) {
-  //   this.slService.addIngredients(ingredients);
-  // }
+  addIngredientsToShoppingList(ingredients: Ingredient[]) {
+    this.slService.addIngredients(ingredients);
+  }
 }
