@@ -9,10 +9,8 @@ import { Recipe } from '../../recipe.model';
 })
 export class RecipeItemComponent implements OnInit {
   // NOTE @Input enables binding this component property from outside
-  // NOTE property is bound in recipe-list.component.html (i.e. [recipe]="recipeElement")
   @Input() recipe: Recipe;
-  // NOTE void denotes nothing is passed with event
-  // @Output() recipeSelected = new EventEmitter<void>();
+  @Input() index: number;
 
   ngOnInit() {
   }
