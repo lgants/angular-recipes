@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
@@ -9,26 +10,20 @@ import { RecipeService } from '../recipe.service';
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit {
-  // NOTE custom events don't propogate up
-  // NOTE relocated behavior to recipe service
-  // @Output() recipeWasSelected = new EventEmitter<Recipe>();
-  // NOTE square brackets after recipes tells TS that recipes will be an array of instances of class Recipe
-  // NOTE relocated to service
-  // recipes: Recipe[] = [
-  //   new Recipe('Test Recipe', 'This is a test', 'https://static.pexels.com/photos/70497/pexels-photo-70497.jpeg'),
-  //   new Recipe('Another Test Recipe', 'This is another test', 'https://static.pexels.com/photos/70497/pexels-photo-70497.jpeg')
-  // ];
+  // NOTE remember custom events don't propogate up
   recipes: Recipe[];
 
-  // NOTE need to inject service here
-  constructor(private recipeService: RecipeService) { }
+  constructor(
+    private recipeService: RecipeService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
     this.recipes = this.recipeService.getRecipes();
   }
 
-  // NOTE relocated behavior to recipe service
-  // onRecipeSelected(recipe: Recipe) {
-  //   this.recipeWasSelected.emit(recipe);
-  // }
+  onNewRecipe() {
+    this.router.navigate(['new'], {relativeTo: this.route});
+  }
 }

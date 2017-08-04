@@ -10,7 +10,7 @@ export class RecipeService {
 
   private recipes: Recipe[] = [
     new Recipe(
-      'Test Recipe',
+      'Hamburger',
       'This is a test', 'https://static.pexels.com/photos/70497/pexels-photo-70497.jpeg',
       [
         new Ingredient('Meat', 1),
@@ -19,12 +19,13 @@ export class RecipeService {
       ]
     ),
     new Recipe(
-      'Another Test Recipe',
-      'This is another test', 'https://static.pexels.com/photos/70497/pexels-photo-70497.jpeg',
+      'Pancakes',
+      'This is another test', 'https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?w=940&h=650&auto=compress&cs=tinysrgb',
       [
-        new Ingredient('Meat', 1),
-        new Ingredient('Bun', 1),
-        new Ingredient('Lettuce', 1),
+        new Ingredient('Butter', 1),
+        new Ingredient('Flour', 1),
+        new Ingredient('Carmel', 1),
+        new Ingredient('Milk', 1),
       ]
     )
   ];
